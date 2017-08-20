@@ -2,8 +2,13 @@ package com.hencoder.hencoderpracticedraw2.practice;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
+import android.graphics.DashPathEffect;
+import android.graphics.DiscretePathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathDashPathEffect;
+import android.graphics.PathEffect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -43,24 +48,37 @@ public class Practice12PathEffectView extends View {
 
         // 第一处：CornerPathEffect
         canvas.drawPath(path, paint);
-
+        PathEffect pathEffect = new CornerPathEffect(20);
+        paint.setPathEffect(pathEffect);
         canvas.save();
+
         canvas.translate(500, 0);
         // 第二处：DiscretePathEffect
+        DiscretePathEffect discretePathEffect = new DiscretePathEffect(20,5);
+        paint.setPathEffect(discretePathEffect);
         canvas.drawPath(path, paint);
         canvas.restore();
 
         canvas.save();
         canvas.translate(0, 200);
         // 第三处：DashPathEffect
+        DashPathEffect dashPathEffect = new DashPathEffect(new float[]{10,10,5,5},0);
+        paint.setPathEffect(dashPathEffect);
         canvas.drawPath(path, paint);
         canvas.restore();
 
         canvas.save();
         canvas.translate(500, 200);
         // 第四处：PathDashPathEffect
-        canvas.drawPath(path, paint);
-        canvas.restore();
+//        Path path = new Path();
+//        path.moveTo(0,0);
+//        path.lineTo(20,0);
+//        path.lineTo(10,10);
+//        path.lineTo(0,0);
+//        path.close();
+//        PathDashPathEffect pathDashPathEffect =new PathDashPathEffect(path,50, 0, PathDashPathEffect.Style.MORPH);
+//        canvas.drawPath(path, paint);
+//        canvas.restore();
 
         canvas.save();
         canvas.translate(0, 400);
